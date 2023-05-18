@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import LoadingIcon from "../assets/loading.json";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CardItem = () => {
   const [games, setGames] = useState();
@@ -64,7 +66,8 @@ const CardItem = () => {
                 key={game.id}
                 className="relative aspect-[16/9] w-auto rounded-md md:aspect-auto md:h-[400px]"
               >
-                <img
+                <LazyLoadImage
+                  effect="blur"
                   src={game.background_image}
                   alt="AirMax Pro"
                   className="z-0 h-full w-full rounded-md object-cover"
