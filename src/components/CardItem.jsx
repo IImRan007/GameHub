@@ -4,9 +4,10 @@ import Lottie from "lottie-react";
 import LoadingIcon from "../assets/loading.json";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Link } from "react-router-dom";
 
 const CardItem = () => {
-  const [games, setGames] = useState();
+  const [games, setGames] = useState(null);
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
   const [pageCount, setPageCount] = useState(1);
@@ -20,6 +21,8 @@ const CardItem = () => {
 
     const response = await axios.get(url);
     const data = await response.data;
+
+    console.log(data);
 
     setGames(data);
     setNextPage(data.next);
@@ -86,9 +89,11 @@ const CardItem = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Excepturi, debitis?
                   </p>
-                  <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-                    Shop Now &rarr;
-                  </button>
+                  <Link to={`/game/${game.id}`}>
+                    <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
+                      See More &rarr;
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
